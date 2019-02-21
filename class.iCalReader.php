@@ -1,6 +1,7 @@
 <?php
+
 /**
- * This PHP-Class should only read a iCal-File (*.ics), parse it and give an 
+ * This PHP-Class should only receive an iCal-String, parse it and give an 
  * array with its content.
  *
  * PHP Version 5
@@ -50,13 +51,12 @@ class ICal
      *
      * @return Object The iCal-Object
      */ 
-    public function __construct($filename) 
+    public function __construct($lines) 
     {
-        if (!$filename) {
+        if (!$lines) {
             return false;
         }
         
-        $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
         if (stristr($lines[0], 'BEGIN:VCALENDAR') === false) {
             return false;
         } else {
@@ -319,4 +319,3 @@ class ICal
         return $extendedEvents;
     }
 } 
-?>
